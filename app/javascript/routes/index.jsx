@@ -7,7 +7,6 @@ import EditEvent from '../components/EditEvent';
 
 const Routes = () => (
   <Router>
-    <Navigation />
     <Switch>
       <Route path="/" exact component={Home} />
       <Route path="/new_event" exact component={CreateEvent} />

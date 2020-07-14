@@ -12,6 +12,24 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="/">
+        <%= image_tag "tix-logo" %>
+      </a>
+      <% if user_signed_in? %>
+        <div>
+          <a href="/new_event" class="btn btn-outline-primary">
+            + New Event
+          </a>
+          <%= link_to "Logout", destroy_user_session_path, :method => 'delete', class: 'ml-2' %>
+        </div>
+      <% else %>
+        <div>
+          <%= link_to "Log in", new_session_path(resource_name) %>
+          <%= link_to "Sign up", new_registration_path(resource_name), class: 'ml-2' %>
+        </div>
+      <% end %>
+    </nav>
     <%= yield %>
   </body>
 </html>
