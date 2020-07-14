@@ -7,6 +7,9 @@ class EventsController < ApplicationController
     render json: events
   end
 
+  def new
+  end
+
   def show
     if event
       render json: event
@@ -24,10 +27,19 @@ class EventsController < ApplicationController
     end
   end
 
-  def update
+  def edit
   end
 
-  def delete
+  def update
+    update_event = event.update!(event_params)
+    if update_event
+      render json: update_event
+    else
+      render json: update_event.errors
+    end
+  end
+
+  def destroy
     event&.destroy
     render json: { message: "Event deleted!" }
   end

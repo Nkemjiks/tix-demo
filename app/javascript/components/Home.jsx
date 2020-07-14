@@ -26,7 +26,7 @@ const Home = () => {
     <div className="vw-100 vh-100 primary-color">
       <div className="bg-transparent">
         <div className="container-fluid secondary-color">
-          <h3 className="">All Events</h3>
+          <h3>All Events</h3>
             {
               loading ? <Loader /> : <EventCardList events={events} />
             }

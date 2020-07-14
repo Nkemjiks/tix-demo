@@ -20,11 +20,10 @@ ActiveRecord::Schema.define(version: 2020_07_14_121308) do
     t.boolean "paid", default: false, null: false
     t.integer "cost", default: 0, null: false
     t.boolean "active", default: false, null: false
-    t.datetime "registration_from", null: false
-    t.datetime "registration_to", null: false
+    t.datetime "registration_from"
+    t.datetime "registration_to"
     t.datetime "date", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
-
 end

@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const EventCard = ({ name, date, cost, active, regActiveFrom, regActiveTo, paid}) => {
+const EventCard = ({eventData}) => {
+  const {name, date, cost, active, registration_to, paid, id} = eventData;
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   const formatDate = (date) => {
@@ -20,10 +21,31 @@ const EventCard = ({ name, date, cost, active, regActiveFrom, regActiveTo, paid}
   )
 
   const checkRegistrationStatus = () => {
-    const regDate = new Date(regActiveTo);
+    const regDate = new Date(registration_to);
     const todayDate = new Date();
 
     return regDate <= todayDate ? 'close' : 'open';
+  }
+
+  const deleteEvent = (eventId) => {
+    const url = `/events/${eventId}`;
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+
+    fetch(url, {
+      method: "DELETE",
+      headers: {
+        "X-CSRF-Token": token,
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then(() => window.location.reload(false))
+      .catch(error => console.log(error.message));
   }
 
   return (
@@ -32,15 +54,15 @@ const EventCard = ({ name, date, cost, active, regActiveFrom, regActiveTo, paid}
         <div className="card-body">
           <a href='/' className="card-title title">{name}</a>
           <p className="card-text">Date: {formatDate(date)}</p>
-          <p className="card-text">Cost: { paid ? getCost(cost) : 'Free'}</p>
+          <p className="card-text">Price: { paid ? getCost(cost) : 'Free'}</p>
           <p className="card-text">Registration: { checkRegistrationStatus()}</p>
           <p className={"card-text badge badge-pill " + activeClass(active)}>{active ? 'active' : 'inactive'}</p>
         </div>
         <div className="card-footer text-right">
-          <Link to="/edit">
+          <Link to={`/edit_event/${id}`}>
             <FontAwesomeIcon icon={faEdit} />
           </Link>
-          <span className="ml-2 text-danger">
+          <span className="ml-2 text-danger" onClick={() => deleteEvent(id)}>
             <FontAwesomeIcon icon={faTrash} />
           </span>
         </div>
