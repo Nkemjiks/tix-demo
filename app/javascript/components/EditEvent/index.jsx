@@ -45,19 +45,10 @@ const EditEvent = (props) => {
   }
 
   const handleActiveCheckedChange = (event) => {
-    if(event.target.id === 'active' && !event.target.checked) {
-      setEventData({
-        ...eventData,
-        [event.target.id] : event.target.checked,
-        registration_from: '',
-        registration_to: ''
-      })
-    } else {
-      setEventData({
-        ...eventData,
-        [event.target.id] : event.target.checked
-      })
-    }
+    setEventData({
+      ...eventData,
+      [event.target.id] : event.target.checked
+    })
   }
 
   const renderPrice = () => (

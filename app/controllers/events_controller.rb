@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   end
 
   def all_events
-    events = Event.all.order(created_at: :desc)
+    events = current_user.events.all.order(created_at: :desc)
     render json: events
   end
 
@@ -21,7 +21,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    event = Event.create!(event_params)
+    event = current_user.events.create!(event_params)
     if event
       render json: event
     else
@@ -53,6 +53,6 @@ class EventsController < ApplicationController
   end
 
   def event
-    @event ||= Event.find(params[:id])
+    @event ||= current_user.events.find(params[:id])
   end
 end
