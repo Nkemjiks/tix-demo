@@ -8,7 +8,8 @@ const CreateEvent = (props) => {
     active: false,
     registration_from: '',
     registration_to: '',
-    date: ''
+    date: '',
+    description: ''
   }
   const [newEvent, setNewEvent] = useState(initialEvent);
   const [error, setError] = useState('');
@@ -126,6 +127,10 @@ const CreateEvent = (props) => {
             <label htmlFor="date">Date *</label>
             <input type="datetime-local" className="form-control" id="date" placeholder="Date" onChange={handleChange} required />
           </div>
+        </div>
+        <div class="form-group">
+          <label for="description">Description *</label>
+          <textarea class="form-control" id="description" rows="5" onChange={handleChange} required ></textarea>
         </div>
         <div className="form-check form-check-inline">
           <input className="form-check-input" type="checkbox" id="active" onChange={handleActiveCheckedChange}/>

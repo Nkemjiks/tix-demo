@@ -146,6 +146,10 @@ const EditEvent = (props) => {
             <input type="datetime-local" className="form-control" id="date" placeholder="Date" value={formatDateTime(eventData.date)} onChange={handleChange} required />
           </div>
         </div>
+        <div class="form-group">
+          <label for="description">Description *</label>
+          <textarea class="form-control" id="description" rows="5" onChange={handleChange} value={eventData.description} required ></textarea>
+        </div>
         <div className="form-check form-check-inline">
           <input className="form-check-input" type="checkbox" id="active" onChange={handleActiveCheckedChange} checked={eventData.active} />
           <label className="form-check-label" htmlFor="active">Active</label>

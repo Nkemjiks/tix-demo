@@ -4,5 +4,6 @@ class Event < ApplicationRecord
   validates :cost, presence: true, if: -> { paid == true }
   validates :registration_from, presence: true, if: -> { active == true }
   validates :registration_to, presence: true, if: -> { active == true }
+  validates :description, presence: true
   validates :date, presence: true
 end

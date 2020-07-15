@@ -52,7 +52,7 @@ const EventCard = ({eventData}) => {
     <div className="col mb-3">
       <div className="card" >
         <div className="card-body">
-          <a href='/' className="card-title title">{name}</a>
+          <h3 className="card-title title">{name}</h3>
           <p className="card-text">Date: {formatDate(date)}</p>
           <p className="card-text">Price: { paid ? getCost(cost) : 'Free'}</p>
           <p className="card-text">Registration: { checkRegistrationStatus()}</p>
@@ -62,7 +62,7 @@ const EventCard = ({eventData}) => {
           <Link to={`/edit_event/${id}`}>
             <FontAwesomeIcon icon={faEdit} />
           </Link>
-          <span className="ml-2 text-danger" onClick={() => deleteEvent(id)}>
+          <span className="ml-2 text-danger delete-event" onClick={() => deleteEvent(id)}>
             <FontAwesomeIcon icon={faTrash} />
           </span>
         </div>
